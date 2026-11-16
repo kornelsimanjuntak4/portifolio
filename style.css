@@ -1,0 +1,445 @@
+/* =========================================================
+   STYLE.CSS - Portofolio modern (HTML + CSS saja)
+   Bagian file:
+   1. Variabel warna (tema gelap permanen)
+   2. Reset & pengaturan dasar
+   3. Navbar
+   4. Hero / About Me (termasuk foto besar yang memudar)
+   5. Kartu proyek bergaya repositori
+   6. Bagian umum, kartu sertifikat, timeline
+   7. Footer
+   8. Background bintik putih bergerak
+   9. Responsif (HP & tablet)
+   ========================================================= */
+
+
+/* ---------- 1. VARIABEL WARNA ----------
+   Variabel (--nama) dipakai berulang. Ubah di sini, seluruh web ikut berubah. */
+:root {
+  --latar: #000000;                      /* hitam pekat */
+  --latar-kartu: rgba(18, 18, 22, 0.8);  /* kartu agak transparan, bintang samar terlihat */
+  --teks: #f2f2f2;                       /* warna teks utama */
+  --teks-pudar: #a3a3ad;                 /* warna teks sekunder */
+  --garis: #26262e;                      /* warna garis / border */
+  --pil: #1f2430;                        /* latar pil menu aktif */
+  --aksen: #4fc3d9;                      /* warna teal untuk menu aktif & tombol */
+  --garis-atas: #2f3b52;                 /* biru gelap di paling atas */
+  --bayangan: 0 6px 24px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ---------- 2. RESET & DASAR ---------- */
+* {
+  box-sizing: border-box;   /* padding tidak menambah lebar elemen */
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;  /* geser halus saat klik menu */
+  scroll-padding-top: 90px; /* supaya judul tidak tertutup navbar */
+}
+
+body {
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  background: var(--latar);
+  color: var(--teks);
+  line-height: 1.7;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+
+/* ---------- 3. NAVBAR ---------- */
+
+/* Garis biru gelap di paling atas */
+.garis-atas {
+  height: 10px;
+  background: var(--garis-atas);
+}
+
+.navbar {
+  position: sticky;         /* menempel di atas saat scroll */
+  top: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.65);   /* agak transparan agar bintang terlihat */
+  backdrop-filter: blur(8px);        /* efek blur di belakang navbar */
+  border-bottom: 1px solid var(--garis);
+}
+
+.navbar-isi {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;            /* susun logo dan menu sejajar */
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: -0.5px;
+}
+.logo span { color: var(--aksen); }
+
+.menu {
+  display: flex;
+  gap: 8px;
+}
+
+/* Setiap link menu berbentuk "pil" */
+.menu a {
+  display: block;
+  padding: 10px 24px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border-radius: 14px;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Efek saat kursor di atas menu / ditekan keyboard */
+.menu a:hover,
+.menu a:focus-visible {
+  background: var(--pil);
+  color: var(--aksen);
+}
+
+/* MENU AKTIF: pil + teks teal.
+   Home aktif secara default; saat salah satu bagian dituju (#projects dst),
+   menu yang sesuai ikut aktif (memakai :has dan :target). */
+.menu a[href="#home"] { background: var(--pil); color: var(--aksen); }
+html:has(:target:not(#home)) .menu a[href="#home"] { background: transparent; color: inherit; }
+html:has(#projects:target)    .menu a[href="#projects"],
+html:has(#experience:target)  .menu a[href="#experience"],
+html:has(#certificate:target) .menu a[href="#certificate"],
+html:has(#contact:target)     .menu a[href="#contact"] {
+  background: var(--pil);
+  color: var(--aksen);
+}
+
+
+/* ---------- 4. HERO / ABOUT ME ---------- */
+.hero { padding: 80px 24px; }
+
+.hero-isi {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;    /* teks dan foto sama lebar (foto lebih besar) */
+  align-items: center;
+  gap: 56px;
+}
+
+.sapaan { color: var(--teks-pudar); font-size: 1.1rem; }
+
+.hero h1 {
+  font-size: clamp(2.6rem, 6vw, 4.4rem);  /* ukuran menyesuaikan layar */
+  line-height: 1.05;
+  letter-spacing: -2px;
+  font-weight: 800;
+  margin: 4px 0 10px;
+}
+
+.peran {
+  color: var(--aksen);
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 28px;
+}
+
+.judul-kecil { font-size: 1.1rem; margin-bottom: 8px; }
+.hero-teks > p:not(.sapaan):not(.peran):not(.motto) {
+  color: var(--teks-pudar);
+  max-width: 52ch;
+}
+
+.tombol-grup { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0; }
+
+.tombol {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 14px;
+  font-weight: 600;
+  transition: transform 0.15s, background 0.2s;
+}
+.tombol:hover { transform: translateY(-2px); }
+.tombol-utama { background: var(--aksen); color: #04141a; }  /* teks gelap di atas teal terang */
+.tombol-garis { border: 2px solid var(--garis); }
+.tombol-garis:hover { background: var(--pil); }
+
+.motto { font-weight: 700; letter-spacing: 0.5px; }
+
+/* Foto muka (About Me): besar, tanpa bingkai, bagian bawah memudar */
+.foto-bingkai {
+  position: relative;          /* supaya lapisan bintang bisa menempel di atas foto */
+  width: 100%;
+  max-width: 520px;            /* ukuran foto (ubah angka ini untuk lebih besar/kecil) */
+  aspect-ratio: 4 / 5;
+  margin-left: auto;
+
+  /* MASK = bagian yang "dihapus" secara halus.
+     Lapisan 1: bagian bawah memudar menjadi transparan.
+     Lapisan 2: sisi kiri dan kanan memudar tipis agar menyatu dengan latar hitam.
+     intersect = kedua efek dipakai bersamaan. */
+  -webkit-mask-image:
+    linear-gradient(to bottom, #000 55%, transparent 100%),
+    linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, #000 55%, transparent 100%),
+    linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+  mask-composite: intersect;
+}
+
+.foto-bingkai img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* foto memenuhi area tanpa gepeng */
+  object-position: center top; /* kepala tidak terpotong */
+}
+
+/* Lapisan bintik putih DI ATAS foto, sehingga bintang tampak melewati gambar */
+.foto-bingkai::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;        /* tidak menghalangi klik */
+  background-image:
+    radial-gradient(2px 2px at 40px 70px,   #fff, transparent),
+    radial-gradient(2px 2px at 130px 20px,  #fff, transparent),
+    radial-gradient(2px 2px at 220px 150px, #fff, transparent),
+    radial-gradient(2px 2px at 280px 260px, #fff, transparent),
+    radial-gradient(1px 1px at 90px 230px,  #fff, transparent),
+    radial-gradient(1px 1px at 170px 110px, #fff, transparent);
+  background-size: 300px 300px;
+  animation: bintang-naik-2 30s linear infinite,
+             berkedip 4s ease-in-out infinite alternate;
+}
+
+
+/* ---------- 5. KARTU PROYEK BERGAYA REPOSITORI ---------- */
+.kartu-repo {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+  background: var(--latar-kartu);
+  border: 1px solid var(--garis);
+  border-radius: 14px;
+  transition: border-color 0.2s;
+}
+.kartu-repo:hover { border-color: var(--aksen); }
+
+.repo-atas {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+/* Judul berwarna biru bergaris bawah seperti link GitHub */
+.repo-atas h3 {
+  color: #3b82f6;
+  text-decoration: underline;
+  font-size: 1.25rem;
+}
+/* Label "Public" berbentuk pil */
+.repo-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 2px 12px;
+  border: 1px solid var(--garis);
+  border-radius: 999px;
+  color: var(--teks-pudar);
+}
+.kartu-repo p { color: var(--teks-pudar); flex: 1; }
+
+.repo-bawah {
+  display: flex;
+  gap: 24px;
+  color: var(--teks-pudar);
+  font-size: 0.95rem;
+}
+/* Titik warna bahasa pemrograman */
+.titik {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: -2px;
+}
+.titik-html { background: #e34c26; }
+.titik-css  { background: #663399; }
+
+
+/* ---------- 6. BAGIAN UMUM, KARTU SERTIFIKAT, TIMELINE ---------- */
+.bagian {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 72px 24px;
+  border-top: 1px solid var(--garis);
+}
+
+.judul-bagian {
+  font-size: 2.2rem;
+  letter-spacing: -1px;
+  font-weight: 800;
+}
+.subjudul { color: var(--teks-pudar); margin: 6px 0 36px; }
+
+/* Grid kartu: otomatis menyesuaikan jumlah kolom */
+.grid-kartu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* Kartu sertifikat */
+.kartu {
+  background: var(--latar-kartu);
+  border: 1px solid var(--garis);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: var(--bayangan);
+}
+/* Gambar sertifikat: tinggi seragam, sudut membulat */
+.kartu img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+.kartu h3 { margin: 16px 0 6px; font-size: 1.2rem; }
+.kartu p { color: var(--teks-pudar); font-size: 0.95rem; }
+.kartu .tombol { margin-top: 14px; padding: 8px 20px; font-size: 0.9rem; }
+
+/* Timeline pengalaman */
+.timeline {
+  border-left: 2px solid var(--garis);  /* garis vertikal */
+  margin-left: 8px;
+}
+.timeline-item {
+  position: relative;
+  padding: 0 0 36px 32px;
+}
+/* Titik bulat di garis */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--aksen);
+  border: 3px solid var(--latar);
+}
+.waktu { font-size: 0.9rem; color: var(--teks-pudar); font-weight: 600; }
+.timeline-item h3 { font-size: 1.2rem; }
+.instansi { color: var(--aksen); font-weight: 600; }
+.timeline-item p:last-child { color: var(--teks-pudar); max-width: 60ch; }
+
+/* Bagian kontak di tengah */
+.kontak { text-align: center; }
+
+
+/* ---------- 7. FOOTER ---------- */
+.footer { border-top: 1px solid var(--garis); padding: 40px 24px; }
+.footer-isi {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--teks-pudar);
+  font-size: 0.95rem;
+}
+.motto-kecil { font-weight: 700; color: var(--teks); margin: 6px 0 16px; }
+.sosial { display: flex; justify-content: center; gap: 20px; }
+.sosial a:hover { color: var(--aksen); text-decoration: underline; }
+
+
+/* ---------- 8. BACKGROUND BINTIK PUTIH BERGERAK ----------
+   Dua lapisan titik (::before dan ::after) menempel di layar
+   (position: fixed) dan bergeser perlahan ke atas. */
+
+/* Lapisan 1: titik kecil, gerak lambat (terkesan jauh) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;                 /* menutupi seluruh layar */
+  z-index: -1;              /* di belakang semua konten */
+  pointer-events: none;     /* tidak menghalangi klik */
+  /* Tiap radial-gradient = 1 titik di posisi (x y) dalam ubin 250x250 */
+  background-image:
+    radial-gradient(1px 1px at 20px 30px,   #fff, transparent),
+    radial-gradient(1px 1px at 90px 120px,  #fff, transparent),
+    radial-gradient(1px 1px at 150px 60px,  #fff, transparent),
+    radial-gradient(1px 1px at 60px 190px,  #fff, transparent),
+    radial-gradient(1px 1px at 200px 200px, #fff, transparent),
+    radial-gradient(1px 1px at 230px 110px, #fff, transparent),
+    radial-gradient(1px 1px at 120px 230px, #fff, transparent);
+  background-size: 250px 250px;   /* ubin diulang ke seluruh layar */
+  opacity: 0.7;
+  animation: bintang-naik-1 60s linear infinite;
+}
+
+/* Lapisan 2: titik lebih besar, gerak lebih cepat, berkedip */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 40px 70px,   #fff, transparent),
+    radial-gradient(2px 2px at 130px 20px,  #fff, transparent),
+    radial-gradient(2px 2px at 220px 150px, #fff, transparent),
+    radial-gradient(2px 2px at 280px 260px, #fff, transparent),
+    radial-gradient(2px 2px at 90px 230px,  #fff, transparent);
+  background-size: 300px 300px;
+  animation: bintang-naik-2 30s linear infinite,
+             berkedip 4s ease-in-out infinite alternate;
+}
+
+/* Geser tepat sebesar 1 ubin supaya perulangan tidak terlihat patah */
+@keyframes bintang-naik-1 {
+  from { background-position: 0 0; }
+  to   { background-position: 0 -250px; }
+}
+@keyframes bintang-naik-2 {
+  from { background-position: 0 0; }
+  to   { background-position: 0 -300px; }
+}
+
+/* Animasi kedip pelan */
+@keyframes berkedip {
+  from { opacity: 0.35; }
+  to   { opacity: 1; }
+}
+
+
+/* ---------- 9. RESPONSIF ---------- */
+
+/* Tablet & HP: foto pindah ke atas, teks di bawah */
+@media (max-width: 860px) {
+  .hero-isi { grid-template-columns: 1fr; gap: 36px; }
+  .foto-bingkai { order: -1; margin: 0 auto; max-width: 360px; }
+  .hero-teks { text-align: center; }
+  .hero-teks > p { margin-left: auto; margin-right: auto; }
+  .tombol-grup { justify-content: center; }
+
+  /* Menu bisa digeser ke samping jika terlalu lebar */
+  .navbar-isi { flex-wrap: wrap; }
+  .menu { overflow-x: auto; max-width: 100%; }
+  .menu a { padding: 8px 16px; font-size: 0.95rem; white-space: nowrap; }
+}
+
+/* Hormati pengguna yang mematikan animasi di perangkatnya */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+  body::before, body::after, .foto-bingkai::after { animation: none; }
+}

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <!-- viewport: supaya tampilan menyesuaikan layar HP -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kornel Simanjuntak | Mahasiswa Informatika &amp; Web Development</title>
+  <meta name="description" content="Portofolio pribadi: proyek, pengalaman, dan sertifikat.">
+
+  <!-- Font Google (opsional). Kalau offline, otomatis pakai font bawaan -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Menghubungkan file CSS (harus satu folder dengan index.html) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Garis biru gelap tipis di paling atas -->
+  <div class="garis-atas"></div>
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar">
+    <div class="navbar-isi">
+      <!-- Logo / inisial -->
+      <a href="#home" class="logo">NK<span>.</span></a>
+
+      <!-- Menu navigasi. href="#id" artinya loncat ke bagian dengan id tersebut.
+           Penulisan id harus sama persis (huruf kecil/besar berpengaruh). -->
+      <nav aria-label="Menu utama">
+        <ul class="menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#certificate">Certificate</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== HOME / ABOUT ME ========== -->
+    <section id="home" class="hero">
+      <div class="hero-isi">
+
+        <!-- Kolom teks (kiri) -->
+        <div class="hero-teks">
+          <p class="sapaan">Halo, saya</p>
+          <h1>Kornel Simanjuntak</h1>
+          <p class="peran">Mahasiswa Informatika &amp; Web Development</p>
+
+          <!-- Bagian About Me -->
+          <h2 class="judul-kecil">About Me</h2>
+          <p>
+            Hai, Saya Kornel Simanjuntak! Sebagai mahasiswa Teknik Informatika ITERA,
+            hari-hari saya banyak dihabiskan untuk merancang antarmuka web dan
+            menyelami dunia Artificial Intelligence (AI). Saya suka menggabungkan
+            logika pemrograman dengan teknologi cerdas untuk menciptakan solusi
+            digital yang solutif dan berdampak nyata.
+          </p>
+
+          <div class="tombol-grup">
+            <a href="#projects" class="tombol tombol-utama">Lihat Proyek</a>
+            <a href="#contact" class="tombol tombol-garis">Hubungi Saya</a>
+          </div>
+
+          <p class="motto">Change your mind, and you'll change the world.</p>
+        </div>
+
+        <!-- Kolom foto (kanan) -->
+        <!-- FOTO MUKA: file ada di folder images/ dengan nama profil-abu-2.jpg.
+             Bagian bawah foto memudar dan bintang melewati foto (diatur di CSS). -->
+        <div class="foto-bingkai" role="img" aria-label="Foto profil Kornel Simanjuntak">
+          <img src="images/profil.jpg" alt="">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== PROJECTS ========== -->
+    <section id="projects" class="bagian">
+      <h2 class="judul-bagian">Projects</h2>
+      <p class="subjudul">Beberapa proyek yang pernah saya kerjakan.</p>
+
+      <div class="grid-kartu">
+
+        <!-- Proyek 1: seluruh kartu adalah link ke GitHub -->
+        <a class="kartu-repo" href="https://github.com/kornelsimanjuntak4/cat-photo-app" target="_blank" rel="noopener">
+          <!-- Baris atas: judul di kiri, label "Public" di kanan -->
+          <div class="repo-atas">
+            <h3>cat-photo-app</h3>
+            <span class="repo-label">Public</span>
+          </div>
+
+          <!-- Deskripsi proyek -->
+          <p>Final result of the 'Cat Photo App' workshop from the freeCodeCamp
+             Responsive Web Design Certification. Learning how to build accessible
+             and well-structured web applications.</p>
+
+          <!-- Baris bawah: bahasa pemrograman dan jumlah bintang -->
+          <div class="repo-bawah">
+            <span><i class="titik titik-html"></i>HTML</span>
+            <span><i class="titik titik-css"></i>CSS</span>
+            <span>☆ 1</span>
+          </div>
+        </a>
+
+        <!-- Proyek 2 (nonaktif). Hapus tanda komentar jika ingin dipakai.
+        <a class="kartu-repo" href="https://github.com/kornelsimanjuntak4" target="_blank" rel="noopener">
+          <div class="repo-atas">
+            <h3>nama-proyek-kedua</h3>
+            <span class="repo-label">Public</span>
+          </div>
+          <p>Tulis deskripsi singkat proyek kedua di sini.</p>
+          <div class="repo-bawah">
+            <span><i class="titik titik-css"></i>CSS</span>
+            <span>☆ 0</span>
+          </div>
+        </a>
+        -->
+
+      </div>
+    </section>
+
+    <!-- ========== EXPERIENCE ========== -->
+    <section id="experience" class="bagian">
+      <h2 class="judul-bagian">Experience</h2>
+      <p class="subjudul">Pengalaman sejak tahun 2026.</p>
+
+      <!-- Timeline: garis vertikal dengan titik di tiap pengalaman -->
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <span class="waktu">Oktober 2026 – November 2026</span>
+          <h3>Staff IT</h3>
+          <p class="instansi">Pemira ITERA</p>
+          <p>Mengelola, mengembangkan, dan mengamankan seluruh infrastruktur teknologi,
+             sistem informasi, serta dukungan teknis guna memastikan kelancaran operasional
+             dan tercapainya tujuan organisasi.</p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="waktu">Agustus 2026 – Desember 2026</span>
+          <h3>Asisten Praktikum</h3>
+          <p class="instansi">Institut Teknologi Sumatera</p>
+          <p>Membimbing mahasiswa TPB untuk menjalankan prosedur praktikum dengan tepat.</p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="waktu">Agustus 2026 – Desember 2026</span>
+          <h3>Asisten Tutorial</h3>
+          <p class="instansi">LTPB ITERA</p>
+          <p>Membimbing, mendampingi, dan mengevaluasi pemahaman mahasiswa baru terhadap
+             materi mata kuliah dasar melalui sesi kelas tutorial dan penyelesaian soal latihan.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========== CERTIFICATE ========== -->
+    <section id="certificate" class="bagian">
+      <h2 class="judul-bagian">My Certificate</h2>
+      <p class="subjudul">Dive into your future</p>
+
+      <!-- grid: kartu sertifikat tersusun otomatis sesuai lebar layar -->
+      <div class="grid-kartu">
+
+        <!-- Sertifikat 1 (salin blok <article> ini untuk menambah sertifikat) -->
+        <article class="kartu">
+          <!-- Gambar sertifikat / logo penyelenggara -->
+          <img src="images/dicoding.jpg" alt="Logo Dicoding">
+
+          <div class="item-detail">
+            <h3>Belajar Dasar AI</h3>
+            <!-- Durasi belajar -->
+            <p><small>⏱ 60 jam</small></p>
+            <!-- Link ke kredensial asli, target _blank = buka di tab baru -->
+            <a href="https://www.dicoding.com/certificates/6RPNG06G9Z2M"
+               class="tombol tombol-utama" target="_blank" rel="noopener">Kredensial</a>
+          </div>
+        </article>
+
+        <!-- Sertifikat 2 -->
+        <article class="kartu">
+          <img src="images/dicoding.jpg" alt="Logo Dicoding">
+          <div class="item-detail">
+            <h3>Memulai Pemrograman dengan Python</h3>
+            <p><small>⏱ 60 jam</small></p>
+            <a href="https://www.dicoding.com/certificates/JMZVO455RXN9"
+               class="tombol tombol-utama" target="_blank" rel="noopener">Kredensial</a>
+          </div>
+        </article>
+
+        <!-- Sertifikat 3 -->
+        <article class="kartu">
+          <img src="images/dicoding.jpg" alt="Logo Dicoding">
+          <div class="item-detail">
+            <h3>Introduction to Financial Literacy</h3>
+            <p><small>⏱ 6 jam</small></p>
+            <a href="https://www.dicoding.com/certificates/4EXG1N02QPRL"
+               class="tombol tombol-utama" target="_blank" rel="noopener">Kredensial</a>
+          </div>
+        </article>
+
+        <!-- Sertifikat 4 (belum punya link kredensial, jadi tombol tidak dibuat) -->
+        <article class="kartu">
+          <img src="images/cisco.jpg" alt="Logo Cisco">
+          <div class="item-detail">
+            <h3>Introduction to Data Science</h3>
+            <p><small>⏱ 60 jam</small></p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact" class="bagian kontak">
+      <h2 class="judul-bagian">Contact</h2>
+      <p class="subjudul">Punya proyek atau ingin berkolaborasi? Kirim pesan saja.</p>
+
+      <!-- Membuka Gmail langsung di halaman tulis pesan.
+           to = alamat tujuan, su = subjek pesan (spasi ditulis %20) -->
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=cornelsmanjuntak42@gmail.com&su=Halo%20Kornel"
+         class="tombol tombol-utama" target="_blank" rel="noopener">My email</a>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-isi">
+      <p>© 2026 Kornel Simanjuntak. All rights reserved.</p>
+      <p class="motto-kecil">Change your mind, and you'll change the world.</p>
+
+      <!-- Link sosial media -->
+      <ul class="sosial">
+        <li><a href="https://www.linkedin.com/in/kornel-simanjuntak-80b923392/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a></li>
+        <li><a href="https://github.com/kornelsimanjuntak4" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a></li>
+        <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=cornelsmanjuntak42@gmail.com&su=Halo%20Kornel"
+               target="_blank" rel="noopener" aria-label="Email">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
